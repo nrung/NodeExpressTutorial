@@ -35,3 +35,10 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# OSX Files
+._*
+.DS_Store
+
+# Editor Files
+*.swp

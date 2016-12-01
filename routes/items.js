@@ -1,15 +1,9 @@
 var express = require('express');
 var router = express.Router();
 
-var items = [
-  { name: 'item 1' },
-  { name: 'item 2' },
-  { name: 'item 3' }
-];
-
 var auth = function(req, res, next) {
   var name = req.query.name;
-  if(name === 'Dan') {
+  if(name === 'Dan' || req.cookies.list_cookie) {
     next();
   } else {
     var err = new Error('Unauthorized');
@@ -25,7 +19,18 @@ router.use('/', function(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('items', { title: 'Item List', items: items });
+
+  var title = "Item List";
+  var items = [];
+  console.log(items);
+  console.log(req.cookies);
+  if(req.cookies.list_cookie) {
+    title = req.cookies.list_cookie.title;
+    items = req.cookies.list_cookie.list;
+  }
+  console.log(items);
+
+  res.render('items', { title: title, items: items});
 });
 
 router.get('/protected', auth, function(req, res, next) {

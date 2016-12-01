@@ -5,10 +5,11 @@
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <h3><%= title %></h3>
     <ul>
-    <% for(var i=0; i<items.length; i++) {%>
-       <li><%= items[i].name %></li>
-    <% } %>
+      <% for(var i = 0; i < items.length; i++) { %>
+      <li><%= items[i] %></li>
+      <% } %>
     </ul>
   </body>
 </html>
